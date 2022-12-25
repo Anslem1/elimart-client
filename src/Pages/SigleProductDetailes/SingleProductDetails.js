@@ -40,11 +40,11 @@ function SingleProductDetails () {
 
   function addSingleItemToCart () {
     const { _id, name, price } = productDetails
-
     const cartImage = productDetails.productPictures[0].images
-
     dispatch(addToCart({ _id, name, price, cartImage }))
   }
+
+  
   function buyNow () {
     const { _id, name, price } = productDetails
     const cartImage = productDetails.productPictures[0].images

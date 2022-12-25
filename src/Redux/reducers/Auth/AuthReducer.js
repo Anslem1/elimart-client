@@ -6,11 +6,9 @@ import {
 const initialState = {
   token: null,
   user: {
-    firstName: '',
-    lastName: '',
+    username: '',
     email: '',
-    password: '',
-    userProfilePicture: ''
+    password: ''
   },
   authenticated: false,
   authenticating: false,
@@ -21,7 +19,6 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-
   switch (action.type) {
     case authConstants.LOGIN_REQUEST:
       state = {

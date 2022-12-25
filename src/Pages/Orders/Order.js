@@ -14,7 +14,6 @@ function Order () {
       <div className='order-container'>
         {user.orders.map(order => {
           return order.items.map((item, index) => {
-          
             return (
               <Link className='link' to={`/order_details/${order._id}`}>
                 <div className='order-content'>

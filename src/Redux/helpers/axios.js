@@ -1,7 +1,10 @@
 import axios from 'axios'
 import { API } from './urlConfig'
 import store from '../store'
-import { authConstants } from '../actions/constants/constants'
+import {
+  authConstants,
+  userSignUpConstants
+} from '../actions/constants/constants'
 import { signOutUser } from '../actions'
 
 const token = localStorage.getItem('token')
@@ -41,6 +44,25 @@ axioInstance.interceptors.response.use(
         })
         alert("Couldn't find user")
         break
+
+      case 'Email or username already exists':
+        console.log({ error, message: 'shit' })
+        store.dispatch({
+          type: userSignUpConstants.USER_SIGNUP_FAILURE,
+          payload: { error: error.response.data.message }
+        })
+        alert('Email or username already exists')
+        break
+
+      case 'password is should be more than 6 characters':
+        console.log({ error })
+        store.dispatch({
+          type: userSignUpConstants.USER_SIGNUP_FAILURE,
+          payload: { error: error.response.data.error }
+        })
+        alert('Password is should be more than 6 characters')
+        break
+
       case 'jwt expired':
         store.dispatch(signOutUser())
         window.location.reload()
@@ -48,8 +70,6 @@ axioInstance.interceptors.response.use(
         return
         break
       default:
-        // window.location.reload()
-
         alert('Something went wrong try again')
 
         break

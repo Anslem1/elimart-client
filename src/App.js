@@ -11,7 +11,6 @@ import {
   getAddress,
   getAllCategory,
   getCartItems,
-  // getOrder,
   getOrders,
   isUserSignedin,
   updateCart
@@ -94,7 +93,7 @@ function App () {
                 <Checkout />
               ) : (
                 <Empty
-                  title={" You don't have any item to your cart to checkout"}
+                  title={"You don't have any item to your cart to checkout"}
                 />
               )
             ) : (

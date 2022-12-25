@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProductBySlug } from '../../../Redux/actions'
+import { addToCart, getProductBySlug } from '../../../Redux/actions'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import './NonPageProducts.css'
@@ -9,12 +9,15 @@ import { log, numberWithCommas } from '../../../Midlleware'
 function NonPageProducts ({ product }) {
   const dispatch = useDispatch()
   const location = useLocation()
+  const products = useSelector(state => state.products)
+  const { productDetails } = products
+  const { _id, quantity } = productDetails
+
   const path = location.pathname.split('/')[1]
 
   useEffect(() => {
     dispatch(getProductBySlug(path))
   }, [])
-  log(product)
 
   return (
     <>
